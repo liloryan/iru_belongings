@@ -6,8 +6,8 @@
 <slot />
 
 <style>
-	p {
+	p{
 		font-family:'Trebuchet MS';
-	}
+}
 	
 </style>
