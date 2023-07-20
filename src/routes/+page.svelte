@@ -31,11 +31,14 @@
 <script>
 import { afterUpdate } from "svelte";
 
+/**
+	 * @type {any[]}
+	 */
 let roomItems = [];
 let newItem = '';
 
 afterUpdate(() => {
-  document.querySelector('.js-item-input').focus();
+  document.querySelector('#newItemTextArea').focus();
 })
 
 function addItem() {
@@ -63,7 +66,7 @@ function deleteItem(id) {
 </script>
 <div class="flex justify-center items-center">
 <form on:submit|preventDefault={addItem}>
-  <input class="js-item-input" type="text" aria-label="Enter a new item to room" placeholder="enter item here" bind:value={newItem}>
+  <input class="input input-bordered input-primary w-full max-w-xs" type="text" id="newItemTextArea" aria-label="Enter a new item to room" placeholder="enter item here" bind:value={newItem}>
 </form>
 </div>
 
