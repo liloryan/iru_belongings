@@ -4,7 +4,14 @@ module.exports = {
 	safelist: [],
 	// whitelistPatterns: [/svelte-/],
 	theme: {
-		extend: {}
+		extend: {
+			padding: {
+				'100px':'100px'
+			},
+			spacing: {
+				'100px':'100px',
+			}
+		}
 	},
 	daisyui: {
 		logs: false

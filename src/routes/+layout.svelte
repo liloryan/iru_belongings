@@ -4,10 +4,3 @@
 </script>
 
 <slot />
-
-<style>
-	p{
-		font-family:'Trebuchet MS';
-}
-	
-</style>

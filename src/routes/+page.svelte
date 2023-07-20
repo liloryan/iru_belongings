@@ -22,13 +22,21 @@
       </form>
     </div>
   </main>
+   
 -->
-
+<div class="flex justify-center items-center">
 <h1>Room Management<br>
 <br> </h1>
+</div>
 <script>
+import { afterUpdate } from "svelte";
+
 let roomItems = [];
 let newItem = '';
+
+afterUpdate(() => {
+  document.querySelector('.js-item-input').focus();
+})
 
 function addItem() {
   newItem = newItem.trim();
@@ -52,20 +60,26 @@ function toggleDone(id) {
 function deleteItem(id) {
   roomItems = roomItems.filter(item => item.id !== Number(id));
 }
-
 </script>
-
+<div class="flex justify-center items-center">
 <form on:submit|preventDefault={addItem}>
   <input class="js-item-input" type="text" aria-label="Enter a new item to room" placeholder="enter item here" bind:value={newItem}>
 </form>
+</div>
 
+<div class="flex justify-center items-center">
 <ul class="item-list">
   {#each roomItems as item (item.id)}
     <li class="room-item">
       <input id={item.id} type = "checkbox" />
       <label for={item.id} class = "tick"> </label>
       <span> {item.text}</span>
-      <button class="btn btn-active" on:click={() => deleteItem(item.id)}>delete</button>
+      <button class="btn-xs btn-active" on:click={() => deleteItem(item.id)}>delete</button>
     </li>
+    <div class="p-[5px]">
+      <!---->
+    </div>
+    
   {/each}
 </ul>
+</div>
