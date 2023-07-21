@@ -1,31 +1,18 @@
-<!-- <h1>Room Management <br/> 
-<br/> </h1>
-<form method="POST">
-	<label>
-		add an item to room:
-		<input 
-			name="description"
-			autocomplete="off"
-		/>
-	</label>
-</form>
-<main>
-    <div class="container">
-      <h1 class="app-title">todos</h1>
-      <ul class="Patient Belongings"></ul>
-      <div class="empty-state">
-        <h2 class="empty-state__title">Add your first item to room</h2>
-        <p class="empty-state__description">Add a new item here.</p>
-      </div>
-      <form>
-        <input class="js-belongings-input" type="text" aria-label="Enter a new item to room" placeholder="E.g. Build a web app" />
-      </form>
+<nav>
+  <div class="navbar bg-base-100">
+    <div class="flex-1">
+      <a class="btn btn-ghost normal-case text-xl" href="/">Home</a>
     </div>
-  </main>
-   
--->
+    <div class="flex-none">
+      <ul class="menu menu-horizontal px-1">
+        <li><a href="/nurse/[slug]/1161">1161</a></li>
+      </ul>
+    </div>
+  </div>
+</nav>
+
 <div class="flex justify-center items-center">
-<h1>Room Management<br>
+<h1 class="font-bold text-2xl">Room Management<br>
 <br> </h1>
 </div>
 <script>
@@ -38,6 +25,7 @@ let roomItems = [];
 let newItem = '';
 
 afterUpdate(() => {
+  // @ts-ignore
   document.querySelector('#newItemTextArea').focus();
 })
 
@@ -55,16 +43,23 @@ function addItem() {
   newItem = '';
 }
 
+/**
+	 * @param {any} id
+	 */
 function toggleDone(id) {
   const index = roomItems.findIndex(item => item.id === Number(id));
   roomItems[index].checked = !roomItems[index].checked;
 }
 
+/**
+	 * @param {any} id
+	 */
 function deleteItem(id) {
   roomItems = roomItems.filter(item => item.id !== Number(id));
 }
 </script>
-<div class="flex justify-center items-center">
+
+<div class="flex justify-center items-center p-[5px]">
 <form on:submit|preventDefault={addItem}>
   <input class="input input-bordered input-primary w-full max-w-xs" type="text" id="newItemTextArea" aria-label="Enter a new item to room" placeholder="enter item here" bind:value={newItem}>
 </form>
