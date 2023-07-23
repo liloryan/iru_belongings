@@ -1,5 +1,6 @@
 <div class="flex justify-center items-center">
-	<h1 class="font-bold text-2xl">1161 Belongings<br>
+	<h1 class="font-bold text-2xl"><br>
+		<br>1161 Belongings<br>
 	<br> </h1>
 	</div>
 	<script>
@@ -10,6 +11,10 @@
 		 */
 	let roomItems = [];
 	let newItem = '';
+	/**
+	 * @type {any[]}
+	 */
+	let deletedItems = [];
 	
 	afterUpdate(() => {
 	  // @ts-ignore
@@ -42,7 +47,9 @@
 	 * @param {any} id
 	 */
 	function deleteItem(id) {
-	  roomItems = roomItems.filter(item => item.id !== Number(id));
+		const deletedItem = roomItems.find(item => item.id == Number(id));
+		deletedItems = [...deletedItems, deletedItem];
+		roomItems = roomItems.filter(item => item.id !== Number(id));
 	}
 	</script>
 
@@ -69,3 +76,24 @@
 	  {/each}
 	</ul>
 	</div>
+
+<div class="flex justify-center items-center">
+	<h2 class="font-bold text-xl"><br>
+	<br>Deleted Belongings</h2>
+</div>
+
+<div class="flex justify-center items-center p-[5px]">
+	<ul class="item-list">
+	  {#each deletedItems as delItem (delItem.id)}
+		<li class="room-item">
+		  <input id={delItem.id} type = "checkbox" />
+		  <label for={delItem.id} class = "tick"> </label>
+		  <span> {delItem.text}</span>
+		</li>
+		<div class="p-[5px]">
+		  <!---->
+		</div>
+		
+	  {/each}
+	</ul>
+</div>
