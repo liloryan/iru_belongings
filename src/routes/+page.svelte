@@ -6,6 +6,7 @@
     <div class="flex-none">
       <ul class="menu menu-horizontal px-1">
         <li><a href="/nurse/[slug]/1161">1161</a></li>
+        <li><a href="/nurse/[slug]/1162">1162</a></li>
       </ul>
     </div>
   </div>
@@ -68,8 +69,7 @@ function deleteItem(id) {
 <div class="flex justify-center items-center">
 <ul class="item-list">
   {#each roomItems as item (item.id)}
-    <li class="room-item">
-      <input id={item.id} type = "checkbox" />
+    <li class="list-disc">
       <label for={item.id} class = "tick"> </label>
       <span> {item.text}</span>
       <button class="btn-xs btn-active" on:click={() => deleteItem(item.id)}>delete</button>
