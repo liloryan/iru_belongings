@@ -44,6 +44,14 @@
 	}
 </script>
 
+<nav>
+	<div class="navbar bg-base-100">
+	  <div class="flex-1">
+		<a class="btn btn-ghost normal-case text-xl" href="/">Home</a>
+	  </div>
+	</div>
+  </nav>
+
 <div class="flex justify-center items-center">
 	<h1 class="font-bold text-2xl">
 		<br />
@@ -197,38 +205,3 @@
 		{/each}
 	</ul>
 </div>
-
-<!---<svg
-			xmlns="http://www.w3.org/2000/svg"
-			width="16"
-			height="16"
-			viewBox="0 0 24 24"
-			fill="none"
-			stroke="currentColor"
-			stroke-width="2"
-			stroke-linecap="round"
-			stroke-linejoin="round"
-			class="feather feather-arrow-right mr-2">
-			<line x1="5" y1="12" x2="19" y2="12"></line>
-			<polyline points="12 5 19 12 12 19"></polyline>
-		  </svg>
-	
-			<svg
-				  xmlns="http://www.w3.org/2000/svg"
-				  width="16"
-				  height="16"
-				  viewBox="0 0 24 24"
-				  fill="none"
-				  stroke="currentColor"
-				  stroke-width="2"
-				  stroke-linecap="round"
-				  stroke-linejoin="round"
-				  class="feather feather-archive mr-2"
-				>
-				  <polyline points="21 8 21 21 3 21 3 8"></polyline>
-				  <rect x="1" y="3" width="22" height="5"></rect>
-				  <line x1="10" y1="12" x2="14" y2="12"></line>
-				</svg>
-				not checked
-				</div>
-			-->
