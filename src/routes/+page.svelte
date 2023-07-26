@@ -1,11 +1,7 @@
 
 <script>
     export let data
-    let data1161 = {"number":1161,'verified': 10, 'unverified':4}
-    let data1162 = {"number":1162,'verified': 6, 'unverified':2}
-    let roomData = [data1161, data1162]
     import { goto } from '$app/navigation';
-    console.log(data)
 
 </script>
 
@@ -25,7 +21,7 @@
         </tr>
       </thead>
       <tbody>
-        {#each roomData as room}
+        {#each data.rooms as room}
             <tr class="hover hover:cursor-pointer z-0" on:click={() => goto(`/nurse/rooms/${room["number"]}`)}>
             <td>{room["number"]}</td>
             <td >{room["verified"]}</td>

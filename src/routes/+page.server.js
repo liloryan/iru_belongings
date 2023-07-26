@@ -2,7 +2,7 @@ import { PrismaClient } from '@prisma/client'
 const prisma = new PrismaClient()
 // fxn loads item info from database when page is opened
 export async function load({ params }) {
-  const rooms = prisma.room.findMany({
+  const rooms = await prisma.room.findMany({
   })
   let updatedRooms = []
   for (let i = 0; i < rooms.length; i++) {
@@ -28,6 +28,6 @@ export async function load({ params }) {
     updatedRooms.push({ "number": rooms[i].number, "unverified": unverifiedCount, "verified": verifiedCount })
   }
   return {
-    rooms: rooms
+    rooms: updatedRooms
   }
 }
