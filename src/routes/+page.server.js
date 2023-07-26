@@ -1,4 +1,5 @@
 import { PrismaClient } from '@prisma/client'
+
 const prisma = new PrismaClient()
 // fxn loads item info from database when page is opened
 export async function load({ params }) {

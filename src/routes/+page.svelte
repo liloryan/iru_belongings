@@ -25,7 +25,7 @@
             <tr class="hover hover:cursor-pointer z-0" on:click={() => goto(`/nurse/rooms/${room["number"]}`)}>
             <td>{room["number"]}</td>
             <td >{room["verified"]}</td>
-            <td>{room["unverified"]}</td>
+            <td class="text-red-400 font-bold">{room["unverified"]}</td>
         </tr>
         {/each}
      </tbody>

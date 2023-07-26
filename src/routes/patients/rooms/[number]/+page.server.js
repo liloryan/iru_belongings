@@ -14,3 +14,40 @@ export async function load({ params }){
     number:params.number
   }
 }
+
+
+/** @type {import('./$types').Actions} */
+export const actions = {
+  create: async ({ cookies, request }) => {
+    const data = await request.formData();
+    const room = await prisma.room.findFirst({
+      where: {
+        number: Number(data.get('roomNumber'))
+      }
+    })
+    if (room) {
+      await prisma.items.create({
+        data: {
+          name: data.get('itemName'),
+          room: {
+            connect: {
+              id: room.id
+            }
+          }
+        }
+      })
+    }
+  }
+  ,
+  remove: async ({ cookies, request }) => {
+    const data = await request.formData();
+    await prisma.items.update({
+      where:{
+        id:Number(data.get('id'))
+      },
+      data:{
+        deleted:true
+      }
+  })
+  }
+};
