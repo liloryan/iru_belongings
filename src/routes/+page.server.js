@@ -1,15 +1,33 @@
-//import { PrismaClient } from '@prisma/client'
-//const prisma = new PrismaClient()
+import { PrismaClient } from '@prisma/client'
+const prisma = new PrismaClient()
 // fxn loads item info from database when page is opened
-//export async function load({ params }){
- // const items = prisma.items.findMany({
-   // where: {
-    //  room: {
-    //    number: Number(params.number)
-    //    }
-    //  }
-   // })
- // return {
-  //  items:items,
-   // number:params.number
-  //}
+export async function load({ params }) {
+  const rooms = prisma.room.findMany({
+  })
+  let updatedRooms = []
+  for (let i = 0; i < rooms.length; i++) {
+    const verifiedCount = await prisma.items.count({
+      where: {
+        deleted: false,
+        checked: true,
+        room: {
+          number: Number(rooms[i].number),
+        }
+      },
+    });
+    const unverifiedCount = await prisma.items.count({
+      where: {
+        deleted: false,
+        checked: false,
+        room: {
+          number: Number(rooms[i].number),
+        }
+      }
+    })
+    console.log(rooms)
+    updatedRooms.push({ "number": rooms[i].number, "unverified": unverifiedCount, "verified": verifiedCount })
+  }
+  return {
+    rooms: rooms
+  }
+}

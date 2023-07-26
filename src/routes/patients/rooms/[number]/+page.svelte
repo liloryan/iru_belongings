@@ -1,7 +1,6 @@
 <script>
 	import { afterUpdate } from 'svelte';
 	export let data;
-	console.log(data)
 	
 	let newItemName = '';
 
@@ -51,13 +50,6 @@
 	</h1>
 </div>
 
-<div class="flex justify-center items-center">
-	<h2 class="text-l font-bold text-red-400">
-		Don't forget to copy the deleted items list into EPIC for patient belongings management after
-		discharge!<br />
-		<br />
-	</h2>
-</div>
 
 <div class="flex justify-center items-center p-[5px]">
 	<form on:submit|preventDefault={addItem}>

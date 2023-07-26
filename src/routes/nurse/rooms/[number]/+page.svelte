@@ -1,7 +1,6 @@
 <script>
 	import { afterUpdate } from 'svelte';
 	export let data;
-	console.log(data)
 	
 	let newItemName = '';
 

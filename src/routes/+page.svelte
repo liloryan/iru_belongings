@@ -1,10 +1,11 @@
 
 <script>
-    //export let data
+    export let data
     let data1161 = {"number":1161,'verified': 10, 'unverified':4}
     let data1162 = {"number":1162,'verified': 6, 'unverified':2}
     let roomData = [data1161, data1162]
     import { goto } from '$app/navigation';
+    console.log(data)
 
 </script>
 
