@@ -32,3 +32,23 @@ export async function load({ params }) {
     rooms: updatedRooms
   }
 }
+///** @type {import('./$types').Actions} */
+//export const actions = {
+  //delItems: async ({ cookies, request }) => {
+    //const data = await request.formData();
+    //await prisma.items.deleteMany({
+      //where:{
+        //id:Number(data.get('id'))
+      //}
+   // })}
+  //}
+//remove: async ({ cookies, request }) => {
+  //const data = await request.formData();
+  //await prisma.items.update({
+ //   where:{
+   //   id:Number(data.get('id'))
+    //},
+  //  data:{
+      //deleted:true,
+     // deleter:"nurse"
+   // }

@@ -1,18 +1,24 @@
 import { PrismaClient } from '@prisma/client'
-import { isTemplateExpression } from 'typescript';
+
 const prisma = new PrismaClient()
 // fxn loads item info from database when page is opened
 export async function load({ params }) {
-  const items = prisma.items.findMany({
-    where: {
-      room: {
-        number: Number(params.number)
+  const items = await prisma.items.findMany({
+    orderBy: [
+      {
+        checked: 'desc',
+      }],
+      where: {
+        room: {
+          number: Number(params.number)
+        }
       }
-    }
+    
   })
   return {
     items: items,
     number: params.number
+    
   }
 }
 
@@ -46,7 +52,8 @@ export const actions = {
         id:Number(data.get('id'))
       },
       data:{
-        deleted:true
+        deleted:true,
+        deleter:"nurse"
       }
   })
   },

@@ -9,12 +9,17 @@
 		<br />{data.number} Belongings<br /> <br />
 	</h1>
 </div>
-
+<div class="flex justify-center items-center">
+	<h2 class="text-l">
+		add the item here with a brief description <br>
+	</h2>
+</div>
 
 <div class="flex justify-center items-center p-[5px]">
-	<form method="POST" action='?/create' class="inline">
+	<form method="POST" action='?/create' class="flex">
+		<div class="mr-2">
 		<input
-			class="input input-bordered input-bg-blue-700 w-full max-w-xs inline"
+			class="input input-bordered input-bg-blue-700 w-full max-w-xs "
 			type="text"
 			aria-label="Enter a new item to room"
 			placeholder="enter item here"
@@ -25,13 +30,16 @@
 			name="roomNumber" 
 			value={data.number} 
 		/>
+		</div>
 		<input
-			class="btn btn-success inline"
+			class="btn btn-success"
 			type="submit"
 			value="Add"
 		/>
 	</form>
 </div>
+<div class="p-[8px]">
+	</div>
 
 <div class="flex justify-center items-center">
 	<ul class="item-list">

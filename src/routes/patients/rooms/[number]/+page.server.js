@@ -3,6 +3,10 @@ const prisma = new PrismaClient()
 // fxn loads item info from database when page is opened
 export async function load({ params }){
   const items = prisma.items.findMany({
+    orderBy: [
+      {
+        checked: 'desc',
+      }],
     where: {
       room: {
         number: Number(params.number)
@@ -14,7 +18,6 @@ export async function load({ params }){
     number:params.number
   }
 }
-
 
 /** @type {import('./$types').Actions} */
 export const actions = {
@@ -46,7 +49,8 @@ export const actions = {
         id:Number(data.get('id'))
       },
       data:{
-        deleted:true
+        deleted:true,
+        deleter:"patient"
       }
   })
   }
