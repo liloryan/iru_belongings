@@ -22,6 +22,7 @@ model Items {
   checked Boolean @default(false)
   deleted Boolean @default(false)
   deleter String? 
+  deletedDate DateTime?
   room Room @relation(fields: [roomId],references: [id])
   roomId Int 
 }
