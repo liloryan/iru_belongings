@@ -1,39 +1,42 @@
-
 <script>
-    export let data
-    import { goto } from '$app/navigation';
-
+	export let data;
+	import { goto } from '$app/navigation';
 </script>
 
 <div class="flex justify-center items-center">
-	<h1 class="font-bold text-2xl"><br>Overview <br>
-    <br></h1>
-    </div>
+	<h1 class="font-bold text-2xl">
+		<br />Overview <br />
+		<br />
+	</h1>
+</div>
 
 <div class="overflow-x-auto">
-    <table class="table">
-      <thead>
-        <tr>
-          <th>Room</th>
-          <th>Verified Items</th>
-          <th>Unverified Items</th>
-          <th>Clear Room</th>
-        </tr>
-      </thead>
-      <tbody>
-        {#each data.rooms as room}
-            <tr class="hover hover:cursor-pointer z-0" on:click={() => goto(`/nurse/rooms/${room["number"]}`)}>
-            <td>{room["number"]}</td>
-            <td >{room["verified"]}</td>
-            <td class="text-red-400 font-bold">{room["unverified"]}</td>
-        </tr>
-        {/each}
-     </tbody>
-    </table>
-  </div>
-
-
-
+	<table class="table">
+		<thead>
+			<tr>
+				<th>Room</th>
+				<th>Verified Items</th>
+				<th>Unverified Items</th>
+				<th>Clear Room</th>
+			</tr>
+		</thead>
+		<tbody>
+			{#each data.rooms as room}
+				<tr
+					class="hover hover:cursor-pointer"
+					on:click={() => goto(`/nurse/rooms/${room['number']}`)}
+				>
+					<td>{room['number']}</td>
+					<td>{room['verified']}</td>
+					<td class="text-red-400 font-bold">{room['unverified']}</td>
+          <td>
+            <button class="btn btn-error" on:click|stopPropagation>Test</button>
+          </td>
+				</tr>
+			{/each}
+		</tbody>
+	</table>
+</div>
 
 <!--
     modal
