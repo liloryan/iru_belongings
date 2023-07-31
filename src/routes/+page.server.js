@@ -25,30 +25,22 @@ export async function load({ params }) {
         }
       }
     })
-    console.log(rooms)
     updatedRooms.push({ "number": rooms[i].number, "unverified": unverifiedCount, "verified": verifiedCount })
   }
   return {
     rooms: updatedRooms
   }
 }
-///** @type {import('./$types').Actions} */
-//export const actions = {
-  //delItems: async ({ cookies, request }) => {
-    //const data = await request.formData();
-    //await prisma.items.deleteMany({
-      //where:{
-        //id:Number(data.get('id'))
-      //}
-   // })}
-  //}
-//remove: async ({ cookies, request }) => {
-  //const data = await request.formData();
-  //await prisma.items.update({
- //   where:{
-   //   id:Number(data.get('id'))
-    //},
-  //  data:{
-      //deleted:true,
-     // deleter:"nurse"
-   // }
+/** @type {import('./$types').Actions} */
+export const actions = {
+  delItems: async ({ request }) => {
+    const data = await request.formData();
+    await prisma.items.deleteMany({
+      where: {
+        room: {
+          number: Number(data.get('roomToDelete'))
+        }
+      }
+    })
+  }
+}

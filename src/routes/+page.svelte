@@ -1,6 +1,12 @@
 <script>
 	export let data;
 	import { goto } from '$app/navigation';
+
+	/**
+	 * @type {HTMLDialogElement}
+	 */
+	let modal;
+	let roomToDelete = -1;
 </script>
 
 <div class="flex justify-center items-center">
@@ -29,26 +35,44 @@
 					<td>{room['number']}</td>
 					<td>{room['verified']}</td>
 					<td class="text-red-400 font-bold">{room['unverified']}</td>
-          <td>
-            <button class="btn btn-error" on:click|stopPropagation>Test</button>
-          </td>
+					<td on:click|stopPropagation>
+						<button
+							class="btn btn-error"
+							on:click|stopPropagation={() => {
+								roomToDelete = Number(room['number']);
+								modal.showModal();
+							}}>Clear</button
+						>
+					</td>
 				</tr>
 			{/each}
 		</tbody>
 	</table>
 </div>
 
-<!--
-    modal
-    <button className="btn" onClick={()=>window.my_modal_1.showModal()}>open modal</button>
-                <dialog id="my_modal_1" className="modal">
-                  <form method="dialog" className="modal-box">
-                    <h3 className="font-bold text-lg">Hello!</h3>
-                    <p className="py-4">Press ESC key or click the button below to close</p>
-                    <div className="modal-action">
-                    {/* if there is a button in form, it will close the modal */}
-                      <button className="btn">Close</button>
-                    </div>
-                  </form>
-                </dialog>
--->
+<dialog bind:this={modal} class="modal">
+	<form method="dialog" class="modal-box">
+		<h3 class="font-bold text-lg">Do you want to clear room {roomToDelete}?</h3>
+		<p class="py-4">Press ESC key or click outside to close</p>
+    <div class="modal-action">
+      <!-- if there is a button in form, it will close the modal -->
+      <form method="POST" action="?/delItems" class="inline">
+        <input
+          type="hidden" 
+          name="roomToDelete" 
+          value={roomToDelete}
+        />
+        <input
+          class="btn btn-error"
+          type="submit"
+          value="clear"
+        />
+      </form>
+      <button class="btn btn-warning">cancel</button>
+    </div>
+	</form>
+  
+	<form method="dialog" class="modal-backdrop">
+		<button>close</button>
+	</form>
+</dialog>
