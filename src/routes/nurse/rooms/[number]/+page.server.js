@@ -53,7 +53,8 @@ export const actions = {
       },
       data:{
         deleted:true,
-        deleter:"nurse"
+        deleter:"nurse",
+        deletedDate: new Date()
       }
   })
   },

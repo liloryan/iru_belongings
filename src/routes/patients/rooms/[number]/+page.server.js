@@ -50,7 +50,8 @@ export const actions = {
       },
       data:{
         deleted:true,
-        deleter:"patient"
+        deleter:"patient",
+        deletedDate: new Date()
       }
   })
   }
