@@ -1,5 +1,17 @@
 <script>
+	import Icon from '@iconify/svelte';
 	export let data;
+
+	function copyDelItems() {
+		const filteredItems = data.items.filter(
+			item => item.deleted && item.checked
+		)
+		const filteredNames = filteredItems.map(
+			item => item.name
+		)
+		navigator.clipboard.writeText(filteredNames.join(", "))
+	}
+
 </script>
 
 <nav>
@@ -85,7 +97,15 @@
 </div>
 
 <div class="flex justify-center items-center">
-	<h2 class="font-bold text-xl py-10">Deleted Belongings</h2>
+	<h2 class="font-bold text-xl py-10">
+		Deleted Belongings
+		<div class="inline pl-3">
+			<button class="btn btn-outline align-middle" on:click={copyDelItems}>
+				copy
+				<Icon icon="uil:copy" width="36" />
+			</button>
+		</div>
+	</h2>
 </div>
 
 <div class="px-10">
@@ -97,31 +117,31 @@
 			<th>Deleted date</th>
 		</thead>
 		<tbody>
-		{#each data.items as delItem (delItem.id)}
-			{#if delItem.deleted}
-				<tr>
-					<td>{delItem.name}</td>
-					<td>
-					{#if delItem.checked}
-						<button class="btn btn-sm btn-success" disabled={true}>verified</button>
-					{:else}
-						<button class="btn btn-sm btn-error" disabled={true}>unverified</button>
-					{/if}
-					</td>
-					<td>
-					{#if delItem.deleter == 'nurse'}
-						<div class="badge badge-success font-bold">NURSE DELETED</div>
-					{:else}
-						<div class="badge badge-error font-bold">PATIENT DELETED</div>
-					{/if}
-					</td>
-					<td>
-						{delItem.deletedDate?.toLocaleString()}
-					</td>
-				</tr>
-				<div class="p-[8px]" />
-			{/if}
-		{/each}
-	</tbody>
+			{#each data.items as delItem (delItem.id)}
+				{#if delItem.deleted}
+					<tr>
+						<td>{delItem.name}</td>
+						<td>
+							{#if delItem.checked}
+								<button class="btn btn-sm btn-success" disabled={true}>verified</button>
+							{:else}
+								<button class="btn btn-sm btn-error" disabled={true}>unverified</button>
+							{/if}
+						</td>
+						<td>
+							{#if delItem.deleter == 'nurse'}
+								<div class="badge badge-success font-bold">NURSE DELETED</div>
+							{:else}
+								<div class="badge badge-error font-bold">PATIENT DELETED</div>
+							{/if}
+						</td>
+						<td>
+							{delItem.deletedDate?.toLocaleString()}
+						</td>
+					</tr>
+					<div class="p-[8px]" />
+				{/if}
+			{/each}
+		</tbody>
 	</table>
 </div>
