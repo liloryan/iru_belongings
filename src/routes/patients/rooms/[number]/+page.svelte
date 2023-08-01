@@ -11,35 +11,26 @@
 </div>
 <div class="flex justify-center items-center">
 	<h2 class="text-l">
-		add the item here with a brief description <br>
+		add the item here with a brief description <br />
 	</h2>
 </div>
 
 <div class="flex justify-center items-center p-[5px]">
-	<form method="POST" action='?/create' class="flex">
+	<form method="POST" action="?/create" class="flex">
 		<div class="mr-2">
-		<input
-			class="input input-bordered input-bg-blue-700 w-full max-w-xs "
-			type="text"
-			aria-label="Enter a new item to room"
-			placeholder="enter item here"
-			name="itemName"
-		/>
-		<input 
-			type="hidden" 
-			name="roomNumber" 
-			value={data.number} 
-		/>
+			<input
+				class="input input-bordered input-bg-blue-700 w-full max-w-xs"
+				type="text"
+				aria-label="Enter a new item to room"
+				placeholder="enter item here"
+				name="itemName"
+			/>
+			<input type="hidden" name="roomNumber" value={data.number} />
 		</div>
-		<input
-			class="btn btn-success"
-			type="submit"
-			value="Add"
-		/>
+		<input class="btn btn-success" type="submit" value="Add" />
 	</form>
 </div>
-<div class="p-[8px]">
-	</div>
+<div class="p-[8px]" />
 
 <div class="flex justify-center items-center">
 	<ul class="item-list">
@@ -48,12 +39,8 @@
 				<li class="list-disc">
 					<span> {item.name}</span>
 					<form method="POST" action="?/remove" class="inline">
-						<input 
-							type="hidden" 
-							name="id" 
-							value={item.id} 
-						/>
-						<input 
+						<input type="hidden" name="id" value={item.id} />
+						<input
 							class="btn btn-outline btn-xs btn-error btn-active"
 							type="submit"
 							value="delete"

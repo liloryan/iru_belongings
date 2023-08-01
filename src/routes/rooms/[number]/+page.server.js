@@ -1,5 +1,5 @@
 export async function load({ params }) {
-  return {
-    number: params.number
-  }
+	return {
+		number: params.number
+	};
 }

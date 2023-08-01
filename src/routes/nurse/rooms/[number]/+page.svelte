@@ -1,19 +1,15 @@
 <script>
 	import Icon from '@iconify/svelte';
-	
+
 	export let data;
 
 	function copyDelItems() {
-		const filteredItems = data.items.filter(
-			item => item.deleted && item.checked
-		)
-		const filteredNames = filteredItems.map(
-			item => item.name
-		)
-		navigator.clipboard.writeText(filteredNames.join(", "))
+		const filteredItems = data.items.filter((item) => item.deleted && item.checked);
+		const filteredNames = filteredItems.map((item) => item.name);
+		navigator.clipboard.writeText(filteredNames.join(', '));
 	}
-
 </script>
+
 <nav>
 	<div class="navbar bg-base-100">
 		<div class="flex-1">

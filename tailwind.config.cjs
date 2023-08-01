@@ -6,10 +6,10 @@ module.exports = {
 	theme: {
 		extend: {
 			padding: {
-				'100px':'100px'
+				'100px': '100px'
 			},
 			spacing: {
-				'100px':'100px',
+				'100px': '100px'
 			}
 		}
 	},
