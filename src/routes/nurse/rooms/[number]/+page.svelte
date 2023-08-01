@@ -1,6 +1,6 @@
 <script>
 	import Icon from '@iconify/svelte';
-	import QrCodeImage from 'svelte-qrcode-image/QRCodeImage.svelte';
+	
 	export let data;
 
 	function copyDelItems() {
@@ -21,7 +21,7 @@
 		</div>
 	</div>
 </nav>
-	<QrCodeImage text="test" errorCorrectionLevel="M"/>
+
 <div class="flex justify-center items-center">
 	<h1 class="font-bold text-2xl pt-2">
 		{data.number} Belongings
