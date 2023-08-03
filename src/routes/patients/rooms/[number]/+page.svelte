@@ -1,4 +1,5 @@
 <script>
+	import { enhance } from '$app/forms';
 	import { afterUpdate } from 'svelte';
 	export let data;
 </script>
@@ -16,7 +17,7 @@
 </div>
 
 <div class="flex justify-center items-center p-[5px]">
-	<form method="POST" action="?/create" class="flex">
+	<form method="POST" action="?/create" class="flex" use:enhance>
 		<div class="mr-2">
 			<input
 				class="input input-bordered input-bg-blue-700 w-full max-w-xs"
@@ -38,7 +39,7 @@
 			{#if !item.deleted}
 				<li class="list-disc">
 					<span> {item.name}</span>
-					<form method="POST" action="?/remove" class="inline">
+					<form method="POST" action="?/remove" class="inline" use:enhance>
 						<input type="hidden" name="id" value={item.id} />
 						<input
 							class="btn btn-outline btn-xs btn-error btn-active"

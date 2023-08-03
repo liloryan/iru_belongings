@@ -1,4 +1,5 @@
 <script>
+	import { enhance } from '$app/forms';
 	import Icon from '@iconify/svelte';
 
 	export let data;
@@ -31,7 +32,7 @@
 </div>
 
 <div class="flex justify-center items-center p-[5px]">
-	<form method="POST" action="?/create" class="flex">
+	<form method="POST" action="?/create" class="flex" use:enhance>
 		<div class="mr-2">
 			<input
 				class="input input-bordered input-bg-blue-700 w-full max-w-xs"
@@ -66,14 +67,14 @@
 							{#if item.checked}
 								<button class="btn btn-sm btn-success" disabled={true}>verified</button>
 							{:else}
-								<form method="POST" action="?/check" class="inline">
+								<form method="POST" action="?/check" class="inline" use:enhance>
 									<input type="hidden" name="id" value={item.id} />
 									<input class="btn btn-sm btn-warning" type="submit" value="verify" />
 								</form>
 							{/if}
 						</td>
 						<td>
-							<form method="POST" action="?/remove" class="inline">
+							<form method="POST" action="?/remove" class="inline" use:enhance>
 								<input type="hidden" name="id" value={item.id} />
 								<input
 									class="btn btn-outline btn-xs btn-error btn-active"
