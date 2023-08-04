@@ -2,7 +2,7 @@
 	import Icon from '@iconify/svelte';
 	import { goto } from '$app/navigation';
 	import { printExternal } from '$lib/print';
-	import {enhance} from '$app/forms';
+	import { enhance } from '$app/forms';
 	export let data;
 	export let form;
 
@@ -18,8 +18,13 @@
 	 * @type {HTMLDialogElement}
 	 */
 	let createModal;
+	/**
+	 * @type {HTMLDialogElement}
+	 */
+	let moveModal;
 	let roomToClear = -1;
 	let roomToDelete = -1;
+	let roomToMove = -1;
 </script>
 
 <div class="flex justify-center items-center">
@@ -38,6 +43,7 @@
 				<th>Unverified Items</th>
 				<th>Clear Room</th>
 				<th>Print QR code</th>
+				<th>Move Room</th>
 				<th>Delete Room</th>
 			</tr>
 		</thead>
@@ -65,6 +71,17 @@
 							on:click|stopPropagation={() => printExternal(`rooms/${room['number']}`)}
 						>
 							<Icon icon="solar:printer-broken" height="35" />
+						</button>
+					</td>
+					<td on:click|stopPropagation>
+						<button
+							class="btn btn-info"
+							on:click|stopPropagation={() => {
+								roomToMove = Number(room['number']);
+								moveModal.showModal();
+							}}
+						>
+							<Icon icon="tabler:switch-3" height="30" />
 						</button>
 					</td>
 					<td on:click|stopPropagation>
@@ -150,10 +167,35 @@
 				<p class="text-red-600">{form.error}</p>
 			{/if}
 			<div class="modal-action">
-				<input class="btn btn-error" type="submit" value="delete" />
+				<input class="btn btn-success" type="submit" value="add"  on:click={() => createModal.close()}/>
 				<button class="btn btn-warning" on:click|preventDefault={() => createModal.close()}
 					>cancel</button
 				>
+			</div>
+		</form>
+	</form>
+
+	<form method="dialog" class="modal-backdrop">
+		<button>close</button>
+	</form>
+</dialog>
+
+<dialog bind:this={moveModal} class="modal">
+	<form method="dialog" class="modal-box">
+		<h3 class="font-bold text-lg">Move items to a different room</h3>
+		<p class="py-4">Press ESC key or click outside to close</p>
+		<!-- if there is a button in form, it will close the modal -->
+		<form method="POST" action="?/moveRoom" class="inline">
+			<input type="hidden" name="roomToMove" value={roomToMove} />
+			<select class="select select-bordered w-full max-w-xs" name="destinationRoom">
+				<option disabled selected>Select new room</option>
+				{#each data.emptyRooms as emptyRoom}	
+					<option value={emptyRoom.id}>{emptyRoom.number}</option>
+				{/each}
+			</select>
+			<div class="modal-action">
+				<input class="btn btn-info" type="submit" value="move" on:click={() => moveModal.close()} />
+				<button class="btn btn-warning" on:click|preventDefault={() => moveModal.close()}>cancel</button>
 			</div>
 		</form>
 	</form>

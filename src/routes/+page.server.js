@@ -1,5 +1,6 @@
 import { PrismaClient } from '@prisma/client';
 import { fail } from '@sveltejs/kit';
+import { resolveModuleName } from 'typescript';
 
 const prisma = new PrismaClient();
 // fxn loads item info from database when page is opened
@@ -31,8 +32,23 @@ export async function load({ params }) {
 			verified: verifiedCount
 		});
 	}
+
+
+	let emptyRooms = await prisma.room.findMany({
+		where: {
+			items: {
+				none: {
+					id: {
+						gt: -1
+					}
+				}
+			}
+		}
+	})
+
 	return {
-		rooms: updatedRooms
+		rooms: updatedRooms,
+		emptyRooms: emptyRooms
 	};
 }
 /** @type {import('./$types').Actions} */
@@ -77,4 +93,33 @@ export const actions = {
 			})
 		}
 	},
+	moveRoom: async ({ request }) => {
+		const data = await request.formData();
+
+		const destinationRoomNumber = Number(data.get('destinationRoom'))
+		const sourceRoomNumber = Number(data.get('roomToMove'))
+
+		const items = await prisma.items.findMany({
+			where: {
+				room: {
+					number: sourceRoomNumber
+				}
+			}
+		})
+
+		items.forEach(async item => {
+			await prisma.items.update({
+				where: {
+					id: item.id
+				},
+				data: {
+					room: {
+						connect: {
+							id: destinationRoomNumber
+						}
+					}
+				}
+			})
+		})
+	}
 };
