@@ -1,6 +1,5 @@
-import { PrismaClient } from '@prisma/client';
+import { PrismaClient } from '$lib/prisma';
 import { fail } from '@sveltejs/kit';
-import { resolveModuleName } from 'typescript';
 
 const prisma = new PrismaClient();
 // fxn loads item info from database when page is opened

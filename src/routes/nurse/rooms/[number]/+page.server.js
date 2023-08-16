@@ -1,4 +1,4 @@
-import { PrismaClient } from '@prisma/client';
+import { PrismaClient } from '$lib/prisma';
 
 const prisma = new PrismaClient();
 // fxn loads item info from database when page is opened
