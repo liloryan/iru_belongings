@@ -77,7 +77,7 @@
 							<form method="POST" action="?/remove" class="inline" use:enhance>
 								<input type="hidden" name="id" value={item.id} />
 								<input
-									class="btn btn-outline btn-xs btn-error btn-active"
+									class="btn btn-outline btn-sm btn-error btn-active"
 									type="submit"
 									value="remove"
 								/>
