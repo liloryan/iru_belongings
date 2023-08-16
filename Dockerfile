@@ -16,3 +16,5 @@ RUN pnpm build
  
 EXPOSE 3000
 CMD ["node", "build"]
+
+#docker run -p 3000:3000 -e DATABASE_URL="file:./dev.db" -e  ORIGIN="http://localhost:3000" liryan/iru_belongings

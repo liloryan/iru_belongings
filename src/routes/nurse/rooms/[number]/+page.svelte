@@ -40,6 +40,7 @@
 				aria-label="Enter a new item to room"
 				placeholder="enter item here"
 				name="itemName"
+				required
 			/>
 			<input type="hidden" name="roomNumber" value={data.number} />
 		</div>
