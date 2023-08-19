@@ -1,6 +1,6 @@
 # Dockerfile
  
-FROM node:16-alpine
+FROM --platform=linux/amd64 node:16-alpine 
  
 RUN npm install -g pnpm
  
