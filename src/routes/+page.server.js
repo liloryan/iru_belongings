@@ -114,11 +114,10 @@ export const actions = {
 				}
 			}
 		})
-
-		items.forEach(async item => {
+		for (let i = 0; i < items.length; i++) {
 			await prisma.items.update({
 				where: {
-					id: item.id
+					id: items[i].id
 				},
 				data: {
 					room: {
@@ -128,6 +127,6 @@ export const actions = {
 					}
 				}
 			})
-		})
-	}
+		}
+	}	
 };
