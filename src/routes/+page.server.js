@@ -25,10 +25,19 @@ export async function load({ params }) {
 				}
 			}
 		});
+		const deletedCount = await prisma.items.count({
+			where: {
+				deleted: true,
+				room: {
+					number: Number(rooms[i].number)
+				}
+			}
+		});
 		updatedRooms.push({
 			number: rooms[i].number,
 			unverified: unverifiedCount,
-			verified: verifiedCount
+			verified: verifiedCount,
+			deletedCount: deletedCount
 		});
 	}
 

@@ -41,6 +41,7 @@
 				<th>Room</th>
 				<th>Verified Items</th>
 				<th>Unverified Items</th>
+				<th>Deleted Items</th>
 				<th>Clear Room</th>
 				<th>Print QR code</th>
 				<th>Move Room</th>
@@ -56,6 +57,7 @@
 					<td>{room['number']}</td>
 					<td>{room['verified']}</td>
 					<td class="text-red-400 font-bold">{room['unverified']}</td>
+					<td>{room['deletedCount']}</td>
 					<td on:click|stopPropagation>
 						<button
 							class="btn btn-error"
