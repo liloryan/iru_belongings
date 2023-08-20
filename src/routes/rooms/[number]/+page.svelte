@@ -12,7 +12,7 @@
 
 <div class="flex flex-col justify-center items-center pt-5">
     <h1 class="text-4xl font-bold">Room {data.number} Belongings Tracking</h1>
-	<QrCodeImage scale={10} text={url} errorCorrectionLevel="M" />
+	<QrCodeImage scale={10} text={"https://"+url} errorCorrectionLevel="M" />
 	<h1 class="text-3xl font-bold underline">{url}</h1>
 </div>
 

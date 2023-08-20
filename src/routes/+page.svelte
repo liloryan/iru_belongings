@@ -137,7 +137,7 @@
 		<p class="py-4">Press ESC key or click outside to close</p>
 		<div class="modal-action">
 			<!-- if there is a button in form, it will close the modal -->
-			<form method="POST" action="?/delRoom" class="inline" use:enhance>
+			<form method="POST" action="?/delRoom" class="inline">
 				<input type="hidden" name="roomToDelete" value={roomToDelete} />
 				<input class="btn btn-error" type="submit" value="delete" />
 			</form>
